@@ -1,7 +1,16 @@
+// ALGORITMO DONDE LE PIDE AL USUARIO QUE INGRESE INGREDIENTES PARA SU SANDWICH, 
+// PARA LUEGO MOSTRARLE UNA ALERTA MENCIONANDO DICHOS INGREDIENTES. 
+// AL INGRESAR ESC (EN MAYUSCULAS) SALE DEL CICLO. 
+// SI EL USUSARIO PIDE EL INGREDIENTE MAYONESA (EN MAYUSCULAS) LE DA UNA ALERTA DICIENDO QUE NO HAY.
 let sandwich = "";
 let ingredientes = prompt("INGRESAR INGREDIENTES PARA TU SANDWICH, PARA SALIR INGRESE ESC");
 while(ingredientes!="ESC"){
-    sandwich += ingredientes + " ";
+    if(ingredientes == "MAYONESA"){
+        alert("NO TENEMOS MAYONESA");
+    }
+    else{
+        sandwich += ingredientes + " ";
+    }
     ingredientes = prompt("INGRESAR INGREDIENTES PARA TU SANDWICH, PARA SALIR INGRESE ESC");
 }
 alert("SU SANDWICH TIENE: " + sandwich);
