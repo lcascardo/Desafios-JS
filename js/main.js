@@ -1,51 +1,83 @@
-// DECLARO VARIABLES
-let producto = 0;
-let carrito = 0;
+// CLASE CONSTRUCTORA
 
-// FUNCIONES:
-// FUNCION PARA SELECCIONAR PRODUCTOS
-function seleccionar() {
-    producto = parseInt(prompt("Ingrese un numero dependiendo del producto a seleccionar:\n 1-Procesador Intel $5.000\n 2-Procesador AMD $3.500\n 3-Placa de video Nvidia $40.000\n 4-Placa de video AMD $30.000\n 5-Gabinete $10.000\n INGRESAR NUMERO 0 PARA TERMINAR DE SELECCIONAR"));
+class Producto {
+    constructor(nombre, tipo, marca, precio) {
+        this.nombre = nombre;
+        this.tipo = tipo;
+        this.marca = marca;
+        this.precio = parseFloat(precio);
+        this.sumarIva = () => {
+            return this.precio = this.precio * 1.21;
+        }
+    }
+}
+
+// INSTANCIAR OBJETOS
+
+const producto1 = new Producto("Intel Core i9-7980XE", "Procesador", "Intel", 50000);
+const producto2 = new Producto("Ryzen 3 1200", "Procesador", "AMD", 35000);
+const producto3 = new Producto("MSI GeForce RTX 2070 SUPER", "Placa de Video", "MSI", 250000);
+const producto4 = new Producto("Cooler Master MasterBox Q300L Rainbow", "Gabinete", "Cooler Master", 11000);
+
+// RECORRER OBJETO CON FOR IN
+
+for (const propiedades in producto1) {
+    console.log(propiedades + ": " + producto1[propiedades])
+}
+
+// USAR METODO PERZONALIZADO
+
+console.log(producto1.sumarIva());
+/* El producto1 tiene un precio de $50000. Mas el iba tendria que dar $60500. */
+
+// CREAR OBJETOS
+
+function crearObjeto() {
+    const producto = new Producto(prompt("Nombre"), prompt("Tipo"), prompt("Marca"), prompt("Precio"));
     return producto;
-};
-// FUNCION PARA SUMAR PRODUCTOS
-function sumar() {
-    switch (producto) {
-        case 1:
-            carrito += 5000;
-            break;
-        case 2:
-            carrito += 3500;
-            break;
-        case 3:
-            carrito += 40000;
-            break;
-        case 4:
-            carrito += 30000;
-            break;
-        case 5:
-            carrito += 10000;
-            break;
-        default:
-            alert("Producto inexistente, vuelva a ingresar un producto");
-            break;
-    }
-    return carrito;
 }
-// FUNCION PARA REALIZAR DESCUENTO DE 20% SI LA COMPRA ES MAYOR O IGUAL A $50.000
-function descuento20() {
-    if (carrito >= 50000) {
-        carrito = carrito - (carrito * 0.2);
-        return carrito;
-    }
-};
 
-// PROCESO
-seleccionar();
-while (producto != 0) {
-    sumar();
-    seleccionar();
+// INGRESAR OBJETOS EN UN ARRAY
+
+const baseDeDatos = [];
+
+function agregarBase() {
+    baseDeDatos.push(crearObjeto());
+    return baseDeDatos;
 }
-descuento20();
-alert("El costo total a pagar es de: " + "$" + carrito);
+
+for (let index = 0; index < 3; index++) {
+    agregarBase();
+}
+
+console.log(baseDeDatos);
+
+// QUITAR ULTIMO OBJETO DEL ARRAY
+
+let decision = prompt("Si desea eliminar el ultimo objeto ingresar si")
+if(decision === "si") {
+    baseDeDatos.pop();
+}
+
+
+// RECORRER ARRAY
+
+for (const productos of baseDeDatos) {
+    console.log(productos);
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
