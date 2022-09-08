@@ -33,134 +33,48 @@ const producto10 = new Producto(10, "Gabinete Thermaltake V200 Tempered Glass Ry
 
 /* Productos */
 const stockProductos = [];
-
-cargarObjeto(stockProductos, producto2);
-cargarObjeto(stockProductos, producto1);
-cargarObjeto(stockProductos, producto3);
-cargarObjeto(stockProductos, producto4);
-cargarObjeto(stockProductos, producto5);
-cargarObjeto(stockProductos, producto6);
-cargarObjeto(stockProductos, producto7);
-cargarObjeto(stockProductos, producto8);
-cargarObjeto(stockProductos, producto9);
-cargarObjeto(stockProductos, producto10);
-
-
-
-
+stockProductos.push(producto1, producto2, producto3, producto4, producto5, producto6, producto7, producto8, producto9, producto10);
 
 /* Productos con IVA agregado */
 const productosConIva = agregarIva(stockProductos);
 // console.log(productosConIva);
 
-/* Filtro por categoria */
-/* Procesador */
-const productosProcesadores = filtrarCategoria(stockProductos, "procesador");
-/* Placa de Video */
-const productosPlacas = filtrarCategoria(stockProductos, "placa de video");
-/* Motherboard */
-const productosMothers = filtrarCategoria(stockProductos, "motherboard");
-/* Gabinete */
-const productosGabinetes = filtrarCategoria(stockProductos, "gabinete");
-
-let categoria = parseInt(prompt("Ingresar una categoria:\n1)procesador\n2)placa de video\n3)motherboard\n4)gabinete"));
- switch (categoria) {
-     case 1:
-         console.log(productosProcesadores);
-         break;
-     case 2:
-         console.log(productosPlacas);
-         break;
-     case 3:
-         console.log(productosMothers);
-         break;
-     case 4:
-         console.log(productosGabinetes);
-         break;
-     default:
-         console.log(productos);
- }
-
-/* Filtro por marca */
-/* Intel */
-const productosIntel = filtrarMarca(stockProductos, "intel");
-/* Amd */
-const productosAmd = filtrarMarca(stockProductos, "amd");
-/* Asus */
-const productosAsus = filtrarMarca(stockProductos, "asus");
-/* Gigabyte */
-const productosGigabyte = filtrarMarca(stockProductos, "gigabyte");
-/* Cooler Master */
-const productosCoolerMaster = filtrarMarca(stockProductos, "cooler master");
-/* Thermaltake */
-const productosThermaltake = filtrarMarca(stockProductos, "thermaltake");
-
- let marca = parseInt(prompt("Ingresar una marca:\n1)Intel\n2)AMD\n3)ASUS\n4)Gigabyte\n5)Cooler Master\n6)Thermaltake"));
- switch (marca) {
-     case 1:
-         console.log(productosIntel);
-         break;
-     case 2:
-         console.log(productosAmd);
-         break;
-     case 3:
-         console.log(productosAsus);
-         break;
-     case 4:
-         console.log(productosGigabyte);
-         break;
-     case 5:
-         console.log(productosCoolerMaster);
-         break;
-     case 6:
-         console.log(productosThermaltake);
-         break;
-     default:
-         console.log(productos);
- }
-
 /* Filtro por precio minimo y maximo */
- let precioMin = parseFloat(prompt("Ingresar precio minimo"));
- let precioMax = parseFloat(prompt("Ingresar precio maximo"));
- const productosMinMax = filtrarPrecio(stockProductos, precioMin, precioMax);
- console.log(productosMinMax);
-
-
-/* Busqueda */
- let busqueda = prompt("Ingrese el nombre de lo que quiere buscar");
- const resultadoBusqueda = filtrarNombre(stockProductos, busqueda.toLocaleLowerCase());
- console.log(resultadoBusqueda);
+//  let precioMin = parseFloat(prompt("Ingresar precio minimo"));
+//  let precioMax = parseFloat(prompt("Ingresar precio maximo"));
+//  const productosMinMax = filtrarPrecio(stockProductos, precioMin, precioMax);
+//  console.log(productosMinMax);
 
 /* Carrito */
 const carrito = [];
 /* Agrego productos al carrito */
-let ingreso = parseInt(prompt("Que producto quiere agregar al carrito:\n1)Procesador Intel Core i9 12900KF 5.2GHz Turbo Socket 1700\n2)Placa de Video ASUS GeForce RTX 3090 24GB GDDR6X ROG STRIX GAMING White OC\n3)Gabinete Thermaltake V200 Tempered Glass Ryzen Edition\n4)Quitar ultimo producto del carrito\nPARA TERMINAR INGRESAR 0"));
-while (ingreso != 0) {
-    switch (ingreso) {
-        case 1:
-            agregarCarrito(producto1);
-            break;
-        case 2:
-            agregarCarrito(producto5);
-            break;
-        case 3:
-            agregarCarrito(producto10);
-            break;
-        case 4:
-            quitarCarrito();
-            break;
-        default:
-    }
-    ingreso = parseInt(prompt("Que producto quiere agregar al carrito:\n1)Procesador Intel Core i9 12900KF 5.2GHz Turbo Socket 1700\n2)Placa de Video ASUS GeForce RTX 3090 24GB GDDR6X ROG STRIX GAMING White OC\n3)Gabinete Thermaltake V200 Tempered Glass Ryzen Edition\n4)Quitar ultimo producto del carrito\nPARA TERMINAR INGRESAR 0"));
-}
-console.log(carrito);
+// let ingreso = parseInt(prompt("Que producto quiere agregar al carrito:\n1)Procesador Intel Core i9 12900KF 5.2GHz Turbo Socket 1700\n2)Placa de Video ASUS GeForce RTX 3090 24GB GDDR6X ROG STRIX GAMING White OC\n3)Gabinete Thermaltake V200 Tempered Glass Ryzen Edition\n4)Quitar ultimo producto del carrito\nPARA TERMINAR INGRESAR 0"));
+// while (ingreso != 0) {
+//     switch (ingreso) {
+//         case 1:
+//             agregarCarrito(producto1);
+//             break;
+//         case 2:
+//             agregarCarrito(producto5);
+//             break;
+//         case 3:
+//             agregarCarrito(producto10);
+//             break;
+//         case 4:
+//             quitarCarrito();
+//             break;
+//         default:
+//     }
+//     ingreso = parseInt(prompt("Que producto quiere agregar al carrito:\n1)Procesador Intel Core i9 12900KF 5.2GHz Turbo Socket 1700\n2)Placa de Video ASUS GeForce RTX 3090 24GB GDDR6X ROG STRIX GAMING White OC\n3)Gabinete Thermaltake V200 Tempered Glass Ryzen Edition\n4)Quitar ultimo producto del carrito\nPARA TERMINAR INGRESAR 0"));
+// }
+// console.log(carrito);
 /* Calculo el total de lo que hay en el carrito */
-let carritoPrecios = carrito.map(function (el) {
-    return el.precio
-});
-const acumular = (acumulador, el) => acumulador + el;
-let carritoTotal = carritoPrecios.reduce(acumular, 0);
-console.log(carritoTotal);
+// let carritoPrecios = carrito.map(function (el) {
+//     return el.precio
+// });
+// const acumular = (acumulador, el) => acumulador + el;
+// let carritoTotal = carritoPrecios.reduce(acumular, 0);
+// console.log(carritoTotal);
 
 
 
@@ -172,11 +86,6 @@ console.log(carritoTotal);
 
 
 // FUNCIONES 
-
-/* Cargar objetos a array */
-function cargarObjeto(arr, obj) {
-    arr.push(obj);
-}
 
 /* Agregar IVA a precio */
 
@@ -202,10 +111,26 @@ function filtrarMarca(arr, filtro) {
     return filtrado;
 }
 
-/* Filtrar array por precio minimo y maximo */
+/* Filtrar array por rango de precios */
 function filtrarPrecio(arr, min, max) {
     const filtrado = arr.filter((el) => {
         return el.precio > min && el.precio < max
+    })
+    return filtrado;
+}
+
+/* Filtrar precio mayor que */
+function filtrarMayorQue(arr, min) {
+    const filtrado = arr.filter((el) => {
+        return el.precio > min
+    })
+    return filtrado;
+}
+
+/* Filtrar precio menor que */
+function filtrarMenorQue(arr, max) {
+    const filtrado = arr.filter((el) => {
+        return el.precio < max
     })
     return filtrado;
 }
@@ -232,10 +157,9 @@ function quitarCarrito() {
 
 
 
+// DOM
 
-
-
-// AGREGAR STOCK DE PRODUCTOS AL DOM
+/* Agregar stock de productos al DOM */
 
 const contenedorProductos = document.getElementById("contenedor-productos");
 stockProductos.forEach(producto => {
@@ -251,10 +175,176 @@ stockProductos.forEach(producto => {
         <p class="card__precio">$${producto.precio}</p>
     </div>
      `
-    contenedorProductos.appendChild(div); 
+    contenedorProductos.appendChild(div);
 });
 
 
+// EVENTOS
+
+/* Evento para buscador */
+
+const btnBuscador = document.getElementById("btn-buscador-productos");
+const buscador = document.getElementById("buscador-productos")
+btnBuscador.addEventListener("click", (e) => {
+    e.preventDefault();
+    contenedorProductos.innerHTML = ``;
+    let resultadoBusqueda = filtrarNombre(stockProductos, buscador.value.toLowerCase());
+    resultadoBusqueda.forEach(producto => {
+        const div = document.createElement("div");
+        div.classList.add("card")
+        div.innerHTML = `
+         <h3 class="card__nombre">${producto.nombre}</h3>
+         <div class="card__contenedor-img">
+         <img class="card__img" src="./img/productos/${producto.img}" alt="">
+         </div>
+         <div class="card__contenedor">
+             <button class="btn card__btn">Agregar</button>
+             <p class="card__precio">$${producto.precio}</p>
+         </div>
+          `
+        contenedorProductos.appendChild(div);
+    });
+})
+
+/* Evento de filtro por categoria */
+
+const btnCategoria = document.getElementById("btn-categoria"),
+    radioProcesador = document.getElementById("filtro-procesador"),
+    radioPlaca = document.getElementById("filtro-placa"),
+    radioMother = document.getElementById("filtro-mother"),
+    radioGabinete = document.getElementById("filtro-gabinete");
+
+btnCategoria.addEventListener("click", (e) => {
+    e.preventDefault();
+    contenedorProductos.innerHTML = ``;
+    let resultado;
+    if (radioProcesador.checked) {
+        resultado = filtrarCategoria(stockProductos, "procesador");
+    }
+    else if (radioPlaca.checked) {
+        resultado = filtrarCategoria(stockProductos, "placa de video");
+    }
+    else if (radioMother.checked) {
+        resultado = filtrarCategoria(stockProductos, "motherboard");
+    }
+    else if (radioGabinete.checked) {
+        resultado = filtrarCategoria(stockProductos, "gabinete");
+    }
+    else {
+        resultado = stockProductos;
+    }
+    resultado.forEach(producto => {
+        const div = document.createElement("div");
+        div.classList.add("card")
+        div.innerHTML = `
+         <h3 class="card__nombre">${producto.nombre}</h3>
+         <div class="card__contenedor-img">
+         <img class="card__img" src="./img/productos/${producto.img}" alt="">
+         </div>
+         <div class="card__contenedor">
+             <button class="btn card__btn">Agregar</button>
+             <p class="card__precio">$${producto.precio}</p>
+         </div>
+          `
+        contenedorProductos.appendChild(div);
+    });
+})
+
+/* Evento de filtro por marcas */
+
+const btnMarca = document.getElementById("btn-marca"),
+    radioIntel = document.getElementById("filtro-intel"),
+    radioAmd = document.getElementById("filtro-amd"),
+    radioAsus = document.getElementById("filtro-asus"),
+    radioMsi = document.getElementById("filtro-msi"),
+    radioGigabyte = document.getElementById("filtro-gigabyte"),
+    radioCoolerMaster = document.getElementById("filtro-cooler_master"),
+    radioThermaltake = document.getElementById("filtro-thermaltake");
+
+
+btnMarca.addEventListener("click", (e) => {
+    e.preventDefault();
+    contenedorProductos.innerHTML = ``;
+    if (radioIntel.checked) {
+        resultado = filtrarMarca(stockProductos, "intel");
+    }
+    else if (radioAmd.checked) {
+        resultado = filtrarMarca(stockProductos, "amd");
+    }
+    else if (radioAsus.checked) {
+        resultado = filtrarMarca(stockProductos, "asus");
+    }
+    else if (radioMsi.checked) {
+        resultado = filtrarMarca(stockProductos, "msi");
+    }
+    else if (radioGigabyte.checked) {
+        resultado = filtrarMarca(stockProductos, "gigabyte");
+    }
+    else if (radioCoolerMaster.checked) {
+        resultado = filtrarMarca(stockProductos, "cooler master");
+    }
+    else if (radioThermaltake.checked) {
+        resultado = filtrarMarca(stockProductos, "thermaltake");
+    }
+    else {
+        resultado = stockProductos;
+    }
+    resultado.forEach(producto => {
+        const div = document.createElement("div");
+        div.classList.add("card")
+        div.innerHTML = `
+         <h3 class="card__nombre">${producto.nombre}</h3>
+         <div class="card__contenedor-img">
+         <img class="card__img" src="./img/productos/${producto.img}" alt="">
+         </div>
+         <div class="card__contenedor">
+             <button class="btn card__btn">Agregar</button>
+             <p class="card__precio">$${producto.precio}</p>
+         </div>
+          `
+        contenedorProductos.appendChild(div);
+    });
+})
+
+/* Evento de filtro por precio */
+
+const btnPrecio = document.getElementById("btn-precio"),
+    precioMinimo = document.getElementById("precioMinimo"),
+    precioMaximo = document.getElementById("precioMaximo");
+
+
+btnPrecio.addEventListener("click", (e) => {
+    e.preventDefault();
+    contenedorProductos.innerHTML = ``;
+    let resultado;
+    if (precioMaximo.value == "") {
+        resultado = filtrarMayorQue(stockProductos, precioMinimo.value);
+    }
+    else if (precioMinimo.value == "") {
+        resultado = filtrarMenorQue(stockProductos, precioMaximo.value);
+    }
+    else if (precioMinimo.value == "" && precioMaximo.value == "") {
+        resultado = stockProductos;
+    }
+    else {
+        resultado = filtrarPrecio(stockProductos, precioMinimo.value, precioMaximo.value);
+    }
+    resultado.forEach(producto => {
+        const div = document.createElement("div");
+        div.classList.add("card")
+        div.innerHTML = `
+         <h3 class="card__nombre">${producto.nombre}</h3>
+         <div class="card__contenedor-img">
+         <img class="card__img" src="./img/productos/${producto.img}" alt="">
+         </div>
+         <div class="card__contenedor">
+             <button class="btn card__btn">Agregar</button>
+             <p class="card__precio">$${producto.precio}</p>
+         </div>
+          `
+        contenedorProductos.appendChild(div);
+    });
+})
 
 
 
