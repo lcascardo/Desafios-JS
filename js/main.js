@@ -42,6 +42,18 @@ const carritoDiv = document.getElementById("carrito");
 
 // --------------------------FUNCIONES--------------------------
 
+/* Agregar IVA a precio */
+
+function agregarIva(arr) {
+    const precioConIva = arr.map((el) => {
+        return {
+            ...el,
+            precio: el.precio * 1.21,
+        }
+    });
+    return precioConIva;
+}
+
 /* Crear Cards */
 function crearCards(array) {
     productosDiv.innerHTML = ``;
