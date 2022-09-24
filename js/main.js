@@ -33,6 +33,8 @@ let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
 const productosDiv = document.getElementById("productos");
 const carritoDiv = document.getElementById("carrito");
 
+const btnResetFiltro = document.getElementById("btn-reset-filtro");
+
 
 
 
@@ -73,6 +75,10 @@ function funcionBotonAgregar(array) {
     array.forEach(producto => {
         document.getElementById(`btnAgregarCarrito${producto.id}`).addEventListener("click", () => {
             agregarAlCarrito(producto);
+            Toastify({
+                text: "AGREGASTE AL CARRITO: " + producto.nombre,
+                duration: 4000
+            }).showToast();
         })
     })
 }
@@ -104,6 +110,10 @@ function renderizarCarrito() {
         <button id="btnBorrarUnoCarrito${prod.id}">-</button>
         </div>`;
     })
+
+
+
+
     localStorage.setItem("carrito", JSON.stringify(carrito));
     borrarDelCarrito();
     borrarUnoDelCarrito();
@@ -116,6 +126,13 @@ function borrarDelCarrito() {
             let indice = carrito.findIndex(el => el.id === producto.id);
             carrito.splice(indice, 1);
             renderizarCarrito();
+            Toastify({
+                text: "PRODUCTO ELIMINADO",
+                style: {
+                    background: "linear-gradient(to right, #E84242, #D80A0A)",
+                },
+                duration: 4000
+            }).showToast();
         })
     }))
 }
@@ -131,6 +148,13 @@ function borrarUnoDelCarrito() {
             else {
                 producto.cantidad--;
             }
+            Toastify({
+                text: "ELIMINASTE UN PRODUCTO",
+                style: {
+                    background: "linear-gradient(to right, #E84242, #D80A0A)",
+                },
+                duration: 4000
+            }).showToast();
             renderizarCarrito();
         })
     }))
@@ -151,7 +175,6 @@ function eventoBusqueda() {
     btnBuscador.addEventListener("click", (e) => {
         e.preventDefault();
         let resultadoBusqueda = filtrarNombre(stockProductos, buscador.value.toLowerCase());
-        console.log(resultadoBusqueda);
         crearCards(resultadoBusqueda);
     })
 }
@@ -188,7 +211,6 @@ function eventoCategoria() {
         else {
             resultado = stockProductos;
         }
-        console.log(resultado);
         crearCards(resultado);
     })
 }
@@ -202,42 +224,42 @@ function filtrarMarca(arr, filtro) {
 /* Evento de filtro por marcas */
 function eventoMarca() {
     const btnMarca = document.getElementById("btn-marca"),
-    radioIntel = document.getElementById("filtro-intel"),
-    radioAmd = document.getElementById("filtro-amd"),
-    radioAsus = document.getElementById("filtro-asus"),
-    radioMsi = document.getElementById("filtro-msi"),
-    radioGigabyte = document.getElementById("filtro-gigabyte"),
-    radioCoolerMaster = document.getElementById("filtro-cooler_master"),
-    radioThermaltake = document.getElementById("filtro-thermaltake");
+        radioIntel = document.getElementById("filtro-intel"),
+        radioAmd = document.getElementById("filtro-amd"),
+        radioAsus = document.getElementById("filtro-asus"),
+        radioMsi = document.getElementById("filtro-msi"),
+        radioGigabyte = document.getElementById("filtro-gigabyte"),
+        radioCoolerMaster = document.getElementById("filtro-cooler_master"),
+        radioThermaltake = document.getElementById("filtro-thermaltake");
 
-btnMarca.addEventListener("click", (e) => {
-    e.preventDefault();
-    if (radioIntel.checked) {
-        resultado = filtrarMarca(stockProductos, "intel");
-    }
-    else if (radioAmd.checked) {
-        resultado = filtrarMarca(stockProductos, "amd");
-    }
-    else if (radioAsus.checked) {
-        resultado = filtrarMarca(stockProductos, "asus");
-    }
-    else if (radioMsi.checked) {
-        resultado = filtrarMarca(stockProductos, "msi");
-    }
-    else if (radioGigabyte.checked) {
-        resultado = filtrarMarca(stockProductos, "gigabyte");
-    }
-    else if (radioCoolerMaster.checked) {
-        resultado = filtrarMarca(stockProductos, "cooler master");
-    }
-    else if (radioThermaltake.checked) {
-        resultado = filtrarMarca(stockProductos, "thermaltake");
-    }
-    else {
-        resultado = stockProductos;
-    }
-    crearCards(resultado);
-})  
+    btnMarca.addEventListener("click", (e) => {
+        e.preventDefault();
+        if (radioIntel.checked) {
+            resultado = filtrarMarca(stockProductos, "intel");
+        }
+        else if (radioAmd.checked) {
+            resultado = filtrarMarca(stockProductos, "amd");
+        }
+        else if (radioAsus.checked) {
+            resultado = filtrarMarca(stockProductos, "asus");
+        }
+        else if (radioMsi.checked) {
+            resultado = filtrarMarca(stockProductos, "msi");
+        }
+        else if (radioGigabyte.checked) {
+            resultado = filtrarMarca(stockProductos, "gigabyte");
+        }
+        else if (radioCoolerMaster.checked) {
+            resultado = filtrarMarca(stockProductos, "cooler master");
+        }
+        else if (radioThermaltake.checked) {
+            resultado = filtrarMarca(stockProductos, "thermaltake");
+        }
+        else {
+            resultado = stockProductos;
+        }
+        crearCards(resultado);
+    })
 }
 
 /* Filtrar array por rango de precios */
@@ -267,32 +289,40 @@ function filtrarMenorQue(arr, max) {
 /* Evento de filtro por precio */
 function eventoPrecioMinMax() {
     const btnPrecio = document.getElementById("btn-precio"),
-    precioMinimo = document.getElementById("precioMinimo"),
-    precioMaximo = document.getElementById("precioMaximo");
+        precioMinimo = document.getElementById("precioMinimo"),
+        precioMaximo = document.getElementById("precioMaximo");
 
-btnPrecio.addEventListener("click", (e) => {
-    e.preventDefault();
-    let resultado;
-    if (precioMaximo.value == "") {
-        resultado = filtrarMayorQue(stockProductos, precioMinimo.value);
-    }
-    else if (precioMinimo.value == "") {
-        resultado = filtrarMenorQue(stockProductos, precioMaximo.value);
-    }
-    else if (precioMinimo.value == "" && precioMaximo.value == "") {
-        resultado = stockProductos;
-    }
-    else {
-        resultado = filtrarPrecio(stockProductos, precioMinimo.value, precioMaximo.value);
-    }
-    crearCards(resultado);
-})
+    btnPrecio.addEventListener("click", (e) => {
+        e.preventDefault();
+        let resultado;
+        if (precioMaximo.value == "") {
+            resultado = filtrarMayorQue(stockProductos, precioMinimo.value);
+        }
+        else if (precioMinimo.value == "") {
+            resultado = filtrarMenorQue(stockProductos, precioMaximo.value);
+        }
+        else if (precioMinimo.value == "" && precioMaximo.value == "") {
+            resultado = stockProductos;
+        }
+        else {
+            resultado = filtrarPrecio(stockProductos, precioMinimo.value, precioMaximo.value);
+        }
+        crearCards(resultado);
+    })
 }
 
 /* Evento Boton Restear Filtro */
-    const btnResetFiltro = document.getElementById("btn-reset-filtro");
-    const formularios = document.getElementsByClassName("formulario");
-    
+function eventoResetearFiltro() {
+    btnResetFiltro.addEventListener("click", () => {
+        crearCards(stockProductos);
+    })
+}
+
+
+
+
+
+
 
 
 
@@ -317,6 +347,8 @@ eventoBusqueda();
 eventoCategoria();
 eventoMarca();
 eventoPrecioMinMax();
+eventoResetearFiltro();
+
 
 
 
